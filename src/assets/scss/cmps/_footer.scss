@@ -1,7 +1,19 @@
+// .app-footer {
+//   padding: 1.5rem 2rem;
+//   background-color: #1c1c1c;
+//   font-size: 25px;
+//   font-family: livic-semi-bold;
+//   color: white;
+// }
+
 .app-footer {
-  padding: 1.5rem 2rem;
-  background-color: #1c1c1c;
-  font-size: 25px;
-  font-family: livic-semi-bold;
+  background-color: #252525;
   color: white;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  bottom: 0;
+  font-family: livic-semi-bold;
+  justify-content: center;
 }

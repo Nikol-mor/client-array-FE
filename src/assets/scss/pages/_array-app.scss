@@ -1,0 +1,19 @@
+.app-containerr {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  font-family: livic-semi-bold;
+
+  .main-container {
+    flex-grow: 1;
+
+    .form-container {
+      padding-top: 26px;
+    }
+    // .form-container {
+    //   font-family: livic-semi-bold;
+    //   margin: 12px;
+    // }
+  }
+}

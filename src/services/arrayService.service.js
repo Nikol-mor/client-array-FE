@@ -9,6 +9,7 @@ async function showArray(number) {
   try {
     const array = await httpService.post('clientArray', { number });
     console.log('array we got from BE', array);
+    return array;
   } catch (err) {
     console.log(err);
     throw err;

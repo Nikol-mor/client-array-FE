@@ -1,15 +1,32 @@
-.App-header {
-  background-color: #333;
-  min-height: 5vh;
-  display: flex;
-  flex-direction: row-reverse;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-  font-family: livic-bold;
+// .App-header {
+//   background-color: #333;
+//   min-height: 5vh;
+//   display: flex;
+//   flex-direction: row-reverse;
+//   align-items: center;
+//   justify-content: center;
+//   font-size: calc(10px + 2vmin);
+//   color: white;
+//   font-family: livic-bold;
 
-  h2 {
-    margin-right: auto;
+//   h2 {
+//     margin-right: auto;
+//   }
+// }
+
+.app-header {
+  color: white;
+  margin-bottom: 50px;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin: 0;
+  font-family: livic-semi-bold;
+  justify-content: center;
+  background: #252525;
+
+  span {
+    color: greenyellow;
   }
 }

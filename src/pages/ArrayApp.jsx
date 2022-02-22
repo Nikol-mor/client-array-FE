@@ -1,8 +1,25 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { arrayService } from '../services/arrayService.service';
+import { socketService } from '../services/socket.service';
+import { ArrayDisplay } from '../cmps/ArrayDisplay';
 
 export const ArrayApp = () => {
   const [numForArray, setNumForArray] = useState('');
+  const [arrayToDisplay, setArrayToDisplay] = useState('');
+
+  useEffect(() => {
+    (async () => {
+      if (arrayToDisplay) {
+        socketService.on('addedArray', (array) => {
+          console.log('added to DB', array);
+        });
+      }
+    })();
+    return () => {
+      setArrayToDisplay('');
+      socketService.off('addedArray');
+    };
+  }, []);
 
   const handleChange = ({ target }) => {
     // === 'number' ? +target.value : target.value
@@ -12,22 +29,29 @@ export const ArrayApp = () => {
   const onShowArray = async (ev) => {
     ev.preventDefault();
     console.log(numForArray);
-    await arrayService.showArray(numForArray);
+    let arrayDisplay = await arrayService.showArray(numForArray);
+    console.log('array', arrayDisplay);
+    setArrayToDisplay(arrayDisplay.toString());
   };
 
   return (
-    <section className=''>
-      <form onSubmit={onShowArray}>
-        <label htmlFor='numberArray'>Enter number</label>
-        <input
-          onChange={handleChange}
-          value={numForArray}
-          type='number'
-          name='numberArray'
-          id='number'
-        />
-        <button>Show the array</button>
-      </form>
+    <section className='main-container'>
+      <div className='form-container'>
+        <form onSubmit={onShowArray}>
+          <label htmlFor='numberArray' className='label'>
+            Enter number
+          </label>
+          <input
+            onChange={handleChange}
+            value={numForArray}
+            type='number'
+            name='numberArray'
+            id='number'
+          />
+          <button>Show the array</button>
+        </form>
+      </div>
+      <ArrayDisplay arrayToDisplay={arrayToDisplay} />
     </section>
   );
 };
