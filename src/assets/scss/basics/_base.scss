@@ -1,0 +1,27 @@
+body {
+  margin: 0;
+  font-family: livic;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+.App {
+  text-align: center;
+
+  h5 {
+    font-family: livic-semi-bold;
+    margin-right: 25px;
+  }
+}
+
+.main-container {
+  // background-color: #282c34;
+  background-color: #33333369;
+  min-height: 75vh;
+
+  @include for-mobile-layout {
+    min-height: 78vh;
+  }
+}
