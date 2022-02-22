@@ -1,19 +1,29 @@
-.app-containerr {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  margin: 0;
+.main-container {
+  flex-grow: 1;
   font-family: livic-semi-bold;
+  font-size: 20px;
 
-  .main-container {
-    flex-grow: 1;
+  .form-container {
+    padding-top: 26px;
 
-    .form-container {
-      padding-top: 26px;
+    label {
+      margin-right: 12px;
     }
-    // .form-container {
-    //   font-family: livic-semi-bold;
-    //   margin: 12px;
-    // }
+
+    button {
+      background-color: rgb(98, 94, 94);
+      color: white;
+      margin-left: 12px;
+      font-family: livic-semi-bold;
+      font-size: 18px;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
   }
+  // .form-container {
+  //   font-family: livic-semi-bold;
+  //   margin: 12px;
+  // }
 }
