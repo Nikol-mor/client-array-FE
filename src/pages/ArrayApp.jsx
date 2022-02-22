@@ -9,11 +9,10 @@ export const ArrayApp = () => {
 
   useEffect(() => {
     (async () => {
-      if (arrayToDisplay) {
-        socketService.on('addedArray', (array) => {
-          console.log('added to DB', array);
-        });
-      }
+      socketService.setup();
+      socketService.on('addedArray', (array) => {
+        console.log('added to DB', array);
+      });
     })();
     return () => {
       setArrayToDisplay('');
@@ -31,6 +30,9 @@ export const ArrayApp = () => {
     console.log(numForArray);
     let arrayDisplay = await arrayService.showArray(numForArray);
     console.log('array', arrayDisplay);
+
+    socketService.emit('addedArray', arrayDisplay);
+
     setArrayToDisplay(arrayDisplay.toString());
   };
 
