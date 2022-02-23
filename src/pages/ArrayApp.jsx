@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { arrayService } from '../services/arrayService.service';
 import { socketService } from '../services/socket.service';
 import { ArrayDisplay } from '../cmps/ArrayDisplay';
-import { UserMsg } from '../cmps/UserMsg';
 
 export const ArrayApp = () => {
   const [numForArray, setNumForArray] = useState('');
@@ -15,14 +14,13 @@ export const ArrayApp = () => {
     (async () => {
       socketService.setup();
       socketService.on('addedArray', (array) => {
-        console.log('added to DB', array);
+        console.log('other user added array to DB', array);
         timeoutId = setTimeout(() => {
           setUserMsg('success');
         }, 2500);
       });
     })();
     return () => {
-      console.log('return in useEffect');
       setArrayToDisplay('');
       if (timeoutId) clearTimeout(timeoutId);
       setUserMsg(null);
@@ -31,16 +29,13 @@ export const ArrayApp = () => {
   }, []);
 
   const handleChange = ({ target }) => {
-    // === 'number' ? +target.value : target.value
     setNumForArray(target.value);
   };
 
   const onShowArray = async (ev) => {
     ev.preventDefault();
-    console.log(numForArray);
     try {
       let arrayDisplay = await arrayService.showArray(numForArray);
-      console.log('array', arrayDisplay);
 
       socketService.emit('addedArray', arrayDisplay);
 
@@ -70,7 +65,6 @@ export const ArrayApp = () => {
         </form>
       </div>
       <ArrayDisplay arrayToDisplay={arrayToDisplay} />
-      {/* <UserMsg userMsg={userMsg} /> */}
       <div className={`user-msg ${userMsg}`}>
         {userMsg === 'success' ? (
           <div>
